@@ -19,24 +19,25 @@ steps:
       $(tag)
 
 - script: |
+    # Add the workspace directory to Git's safe directory list
     
     
     # Update the image tag in the deployment file
     sed -i 's|image: .*|image: bharath1612/usc:$(Build.BuildId)|' deployment.yml
     
     # Configure Git
-    git config --global user.name '2355333'
-    git config --global user.email '2355333@cognizant.com'
+    git config --global user.name 'bharathyadav161'
+    git config --global user.email 'bharathyadav9123161@gmail.com'
     
     # Pull the latest changes
-    git pull https://2355333:FgAMtmLRa4t3zbspawQX5Wq36aOgYk2M347EMSTjAHH2tsF8fiaLJQQJ99ALACAAAAA6DxLKAAASAZDOb4zy@dev.azure.com/2355333/usecase/_git/usecase HEAD:main
+    git pull https://bharathyadav161:$(GIT_TOKEN)@github.com/bharathyadav161/usecase.git HEAD:main
     
     # Add and commit the changes
     git add deployment.yml service.yml
     git commit -m "Update image tag to $(Build.BuildId)"
     
     # Push the changes
-    git push https://2355333:FgAMtmLRa4t3zbspawQX5Wq36aOgYk2M347EMSTjAHH2tsF8fiaLJQQJ99ALACAAAAA6DxLKAAASAZDOb4zy@dev.azure.com/2355333/usecase/_git/usecase HEAD:main
+    git push https://bharathyadav161:$(GIT_TOKEN)@github.com/bharathyadav161/usecase.git HEAD:main
   displayName: 'Update Deployment YAML with New Image Tag'
   env:
-    AZURE_PAT: FgAMtmLRa4t3zbspawQX5Wq36aOgYk2M347EMSTjAHH2tsF8fiaLJQQJ99ALACAAAAA6DxLKAAASAZDOb4zy
+    GIT_TOKEN: $(GIT_TOKEN)
