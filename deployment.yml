@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - name: usc-container
-        image: bharath1612/usc:latest
+        image: bharath1612/usc:$(Build.BuildId)
         ports:
         - containerPort: 80
