@@ -20,7 +20,7 @@ steps:
 
 - script: |
     # Add the workspace directory to Git's safe directory list
-    git config --global --add safe.directory $(Pipeline.Workspace)/usecase
+    
     
     # Update the image tag in the deployment file
     sed -i 's|image: .*|image: bharath1612/usc:$(Build.BuildId)|' deployment.yml
