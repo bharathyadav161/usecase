@@ -1,8 +1,3 @@
-# Starter pipeline
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
-
 trigger:
 - main
 
@@ -22,3 +17,25 @@ steps:
     Dockerfile: '**/Dockerfile'
     tags: |
       $(tag)
+
+- script: |
+    # Add the workspace directory to Git's safe directory list
+    git config --global --add safe.directory $(Pipeline.Workspace)/usc
+    
+    # Update the image tag in the deployment file
+    sed -i 's|image: .*|image: bharath1612/usc:$(Build.BuildId)|' deployment.yml
+    
+    # Configure Git
+    git config --global user.name 'bharathyadav161'
+    git config --global user.email 'bharathyadav9123161@gmail.com'
+    
+    # Pull the latest changes
+    git pull https://bharathyadav161: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@github.com/bharathyadav161/usc.git HEAD:main
+    
+    # Add and commit the changes
+    git add deployment.yml service.yml
+    git commit -m "Update image tag to $(Build.BuildId)"
+    
+    # Push the changes
+    git push https://bharathyadav161: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@github.com/bharathyadav161/usc.git HEAD:main
+  displayName: 'Update Deployment YAML with New Image Tag'
