@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - name: usc-container
-        image: bharath1612/usc:18
+        image: bharath1612/usc:19
         ports:
         - containerPort: 80
