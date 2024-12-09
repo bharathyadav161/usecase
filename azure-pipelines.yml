@@ -30,12 +30,14 @@ steps:
     git config --global user.email 'bharathyadav9123161@gmail.com'
     
     # Pull the latest changes
-    git pull https://bharathyadav161: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@github.com/bharathyadav161/usecase.git HEAD:main
+    git pull https://bharathyadav161:$(GIT_TOKEN)@github.com/bharathyadav161/usecase.git HEAD:main
     
     # Add and commit the changes
     git add deployment.yml service.yml
     git commit -m "Update image tag to $(Build.BuildId)"
     
     # Push the changes
-    git push https://bharathyadav161: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@github.com/bharathyadav161/usecase.git HEAD:main
+    git push https://bharathyadav161:$(GIT_TOKEN)@github.com/bharathyadav161/usecase.git HEAD:main
   displayName: 'Update Deployment YAML with New Image Tag'
+  env:
+    GIT_TOKEN: $(GIT_TOKEN)
