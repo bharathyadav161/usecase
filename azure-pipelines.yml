@@ -11,6 +11,7 @@ pool:
 
 variables:
   imageName: 'bharath1612/usc'
+  tag: $(Build.BuildId)
 
 steps:
 - task: Docker@2
@@ -20,5 +21,4 @@ steps:
     command: 'buildAndPush'
     Dockerfile: '**/Dockerfile'
     tags: |
-      $(Build.BuildId)
-      latest
+      $(tag)
