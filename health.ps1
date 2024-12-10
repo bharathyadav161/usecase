@@ -22,7 +22,7 @@ $nodeHealth = $true
 foreach ($node in $aksNodes) {
     if ($node.provisioningState -ne "Succeeded") {
         $nodeHealth = $false
-        break
+       
     }
 }
  
@@ -34,7 +34,7 @@ $podHealth = $true
 foreach ($pod in $pods.items) {
     if ($pod.status.phase -ne "Running" -and $pod.status.phase -ne "Succeeded") {
         $podHealth = $false
-        break
+       
     }
 }
  
