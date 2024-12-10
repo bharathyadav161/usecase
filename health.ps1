@@ -41,9 +41,10 @@ foreach ($pod in $pods.items) {
 # Check health and exit build if any issue is found
 if (-not $nodeHealth -or -not $podHealth) {
     Write-Output "One or more AKS resources are unhealthy. Resource Group: $resourceGroupName, Cluster Name: $aksClusterName. Check the Azure DevOps pipeline logs for details."
-   
+    exit 0
 } else {
     Write-Output "resources are healthy."
+    exit 0
 }
 
 
